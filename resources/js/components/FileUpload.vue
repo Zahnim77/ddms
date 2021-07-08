@@ -12,10 +12,12 @@ export default {
         name: null,
         avatar: null,
       },
+      formData: null
     };
   },
 
   onFileChange(event) {
+
     /*
     Set the local file variable to what the user has selected.
     */
