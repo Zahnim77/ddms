@@ -49,11 +49,11 @@
         </div>
         <div class="col-md-4 offset-md-4">
             @if(Auth::guard('web')->check())
+                <?php $userID = Auth::guard('web')->user()->id; ?>
                 @isset(Auth::guard('web')->user()->cv)
-                    <?php $user = Auth::guard('web')->user()->id; ?>
-                    {{ Html::linkRoute('company.edit', 'Apply', array('company'=>$user, 'job'=>$job->id), array('class' => 'btn btn-success btn-block btn-lg')) }}
+                {!! Html::linkRoute('application', 'Apply', array($job->slug, $userID), array('class' => 'btn btn-success btn-block btn-lg')) !!}
                 @else 
-                {{ Html::linkRoute('login', 'Apply', [], array('class' => 'btn btn-success btn-block btn-lg')) }}
+                {{ Html::linkRoute('profile', 'Apply', [$userID], array('class' => 'btn btn-success btn-block btn-lg')) }}
                 @endisset
             @else 
             {{ Html::linkRoute('login', 'Apply', [], array('class' => 'btn btn-success btn-block btn-lg')) }}

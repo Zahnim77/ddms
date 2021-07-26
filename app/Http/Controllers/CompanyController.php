@@ -35,6 +35,25 @@ class CompanyController extends Controller
     }
 
     /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function applicants($companyId, $jobId)
+    {   
+        $job = Job::find($jobId);
+        //dd($job->company_id);
+        $company = Company::find($companyId);
+        //$job = Job::where('company_id', '=', Auth::guard('company')->user()->id)->get();
+        if (isset($job->company_id) && $job->company_id == $company->id) {
+            return view('company.applicants')->withCompany($company)->withJob($job);
+        } else {
+            //abort(404);
+            abort(403, 'Unauthorized action.');
+        }
+    }
+    
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

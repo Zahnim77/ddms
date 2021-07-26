@@ -20,4 +20,10 @@ class Job extends Model
     {
         return $this->belongsTo('App\Company');
     }
+
+    // For Job Application
+    public function users ()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

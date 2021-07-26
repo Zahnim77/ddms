@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 //use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator; // Added for laravel 8
 use App\Job;
 use Mail;
 use Session;
+use App\Category;
+use App\Company;
+use App\User;
 
 class PageController extends Controller {
     
     public function getIndex () {
-        $jobs =Job::orderBy('created_at', 'desc')->limit(5)->get();
-        return view ('pages.welcome')->withJobs($jobs);
+        Paginator::useBootstrap(); // Added for laravel 8
+        $jobTotal = Job::all();
+        $jobs =Job::orderBy('created_at', 'desc')->paginate(4);
+        $categories = Category::all();
+        $companies = Company::all();
+        $users = User::all();
+        return view ('pages.welcome')->withJobs($jobs)->withJobTotal($jobTotal)->withCategories($categories)->withCompanies($companies)->withUsers($users);
     }
     
     public function getLogin() {

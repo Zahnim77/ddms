@@ -30,7 +30,7 @@
         </li>
         <li class="{{ Request::is('view') ? "active" : ""}}">
           @if(Auth::guard('admin')->check())
-            <a class="nav-link" href="/view">Jobs_FrontEnd</a>
+            <a class="nav-link" href="/view">Jobs(Clientside)</a>
           @else 
             <a class="nav-link" href="/view">Jobs</a>
           @endif
@@ -75,7 +75,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('company.dashboard') }}">My Jobs</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="/view">All Jobs</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route($route) }}"
                 onclick="event.preventDefault();

@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // For Job Application
+    public function jobs ()
+    {
+        return $this->belongsToMany('App\Job');
+    }
+
+    // For User Skills
+    public function tags ()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

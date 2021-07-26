@@ -60,4 +60,8 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .dropdown {
+                list-style-type: none;
+            }
         </style>

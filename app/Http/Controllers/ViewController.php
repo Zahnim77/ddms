@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Pagination\Paginator; // Added for laravel 8
 use Illuminate\Http\Request;
 use App\Job;
 
 class ViewController extends Controller
 {
     public function getIndex() {
-
+        Paginator::useBootstrap(); // Added for laravel 8
         $jobs = Job::orderBy('created_at', 'desc')->paginate(5);
         return view('view.index')->withJobs($jobs);
     }

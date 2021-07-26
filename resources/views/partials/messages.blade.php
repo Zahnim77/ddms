@@ -30,3 +30,10 @@
         <strong>Caution:</strong> {{ Session::get('caution') }}
     </div>
 @endif
+
+@if (Session::has('info'))
+    <br>
+    <div class="alert alert-primary" role="alert">
+        <strong>Check-out:</strong> {{ Session::get('info') }}
+    </div>
+@endif

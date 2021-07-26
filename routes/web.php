@@ -10,16 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Storage Link creation
+/*
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+*/
 /* 1st parameter is for hyperlink reference value:"href" */
 Route::get('/', 'PageController@getIndex');
 Route::get('contact', 'PageController@getContact');
 Route::post('contact', 'PageController@postContact');
-//Route::get('login', 'PageController@getLogin');
-
-/* Route::get('login', function () {
-    return view ('pages.login');
-}); */
 
 /* Front-End Public View */
 Route::get('view/{slug}', [
@@ -27,13 +27,16 @@ Route::get('view/{slug}', [
 )->where('slug', '[\w\d\-\_]+');
 Route::get('view', [
     'uses'=>'ViewController@getIndex', 'as'=>'view.index']);
+// Job Application
+Route::get('view/{slug}/{user}', 
+    'HomeController@application')->where('slug', 
+    '[\w\d\-\_]+')->middleware('auth:web')->name('application');
 /* Route::get('/', function () {
     return view ('main');
 });
 */
 Auth::routes();
-Route::resource('jobs', 'JobController');
-//Route::resource('company', 'CompanyController');
+
 //Categories routes without some functions
 Route::resource('categories', 'CategoryController', ['except' => ['create', 'show', 'edit']]);
 //Tags routes without create & edit function
@@ -43,7 +46,7 @@ Route::resource('jobs', 'JobController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/{user}', 'HomeController@profile')->name('profile');
-Route::post('/profile/{user}', 'HomeController@update_profile')->name('update.profile');
+Route::put('/profile/{user}', 'HomeController@update_profile')->name('update.profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -59,6 +62,7 @@ Route::prefix('company')->group(function () {
     Route::put('/{company}/jobs/{job}', 'CompanyController@update')->name('company.update');
     //Route::get('/jobs/edit/{id}', array('as' => 'company.edit', 'uses' => 'CompanyController@edit'));
     Route::delete('/{job}', 'CompanyController@destroy')->name('company.destroy');
+    Route::get('/{company}/jobs/{job}/applicants', 'CompanyController@applicants')->name('company.applicants');
 
     Route::get('/register', 'Auth\CompanyRegisterController@showCompanyRegisterForm')->name('company.register');
     Route::post('/register', 'Auth\CompanyRegisterController@createCompany')->name('company.register.submit');
