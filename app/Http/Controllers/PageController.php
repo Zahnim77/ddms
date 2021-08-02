@@ -36,7 +36,7 @@ class PageController extends Controller {
     public function postContact (Request $request) {
         
         $this->validate($request, [
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'subject' => 'max:255',
             'message' => 'min:10'
         ]);
