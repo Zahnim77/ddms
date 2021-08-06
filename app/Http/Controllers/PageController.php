@@ -12,6 +12,9 @@ use Session;
 use App\Category;
 use App\Company;
 use App\User;
+use App\Tag;
+use http\Env\Response;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller {
     
@@ -58,5 +61,32 @@ class PageController extends Controller {
         Session::flash('success', 'Your Email is successfully sent!');
         return redirect('/');
 
+    }
+
+    public function search(Request $request)
+    {
+        $key = trim($request->get('keyword'));
+        
+        //get all the tags
+        $tag = Tag::query()
+            ->where('name', 'like', "%{$key}%")
+            ->first();
+
+        return view('pages.search')->withKey($key)->withTag($tag);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function autocomplete(Request $request)
+    {
+        // Remember to use 'terms' as parameter
+        $data = Tag::select("name")
+                ->where("name", "LIKE", "%{$request->terms}%")
+                ->get();
+   
+        return response()->json($data);
     }
 }

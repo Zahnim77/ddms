@@ -39,9 +39,13 @@
           <a class="nav-link" href="/contact">Contact</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search for a job" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+      <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET" role="search" autocomplete="off">
+        <div class="form-group">
+          {{ csrf_field() }}
+          <input class="typeahead form-control mr-sm-2" name="keyword" type="text" placeholder="Search with keyword" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>        
       </form>
 
       @if(Auth::guard('admin')->check())

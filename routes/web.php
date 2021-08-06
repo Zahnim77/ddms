@@ -20,6 +20,10 @@ Route::get('/linkstorage', function () {
 Route::get('/', 'PageController@getIndex');
 Route::get('contact', 'PageController@getContact');
 Route::post('contact', 'PageController@postContact');
+// Search results page
+Route::get('/search', 'PageController@search')->name('search'); 
+// Dynamic Search Form
+Route::get('/autocomplete', 'PageController@autocomplete')->name('autocomplete'); 
 
 /* Front-End Public View */
 Route::get('view/{slug}', [
