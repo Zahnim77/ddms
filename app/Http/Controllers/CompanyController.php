@@ -9,6 +9,8 @@ use App\Tag;
 use App\Company;
 use Session;
 use Auth;
+use Purifier; // secure WYSIWYG Input
+
 
 class CompanyController extends Controller
 {
@@ -98,7 +100,7 @@ class CompanyController extends Controller
         //$job->company_id = Auth::guard('company')->user()->id;
 
         $job->category_id = $request->category_id;
-        $job->job_description = $request->job_description;
+        $job->job_description = Purifier::clean($request->job_description);
         $job->salary = $request->salary;
         $job->location = $request->location;
 
@@ -208,7 +210,7 @@ class CompanyController extends Controller
         $job->category_id = $request->input('category_id');
         $job->slug = $request->slug;
         //$job->company_id = $request->input('company_id');// Hidden in Edit form
-        $job->job_description = $request->input('job_description');
+        $job->job_description = Purifier::clean($request->input('job_description'));
         $job->salary = $request->input('salary');
         $job->location = $request->input('location');
 

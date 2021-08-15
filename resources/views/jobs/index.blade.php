@@ -40,9 +40,9 @@
                         <td style="color:blue;">{{ $job->vacancy }}</td>
 
                         <td>
-                            {{ substr($job->job_description, 0, 250) }}
+                            {{ substr(strip_tags($job->job_description), 0, 250) }}
                             <br>
-                            {{ strlen($job->job_description) > 250 ? "....." : "" }}
+                            {{ strlen(strip_tags($job->job_description)) > 250 ? "....." : "" }}
                         </td>
 
                         <td>{{ $job->location }}</td>

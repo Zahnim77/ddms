@@ -5,6 +5,15 @@
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!} 
     {!! Html::style('css/select2.min.css') !!} 
+    <script src="https://cdn.tiny.cloud/1/d7hnj8wxxesnw9n7hi5gm3avo9zo87m6uc984knceles0ilw/tinymce/5/tinymce.min.js" 
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link lists image code fullscreen',
+            toolbar: 'undo redo | styleselect | forecolor | numlist bullist | bold italic | alignleft aligncenter alignright alignjustify | link image | code | fullscreen'
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -36,7 +45,7 @@
                 </select>
                 <br>
                 {{ Form::label('job_description', "Job Details:") }}
-                {{ Form::textarea('job_description', null, array('class' => 'form-control', 'required' => '')) }}
+                {{ Form::textarea('job_description', null, array('class' => 'form-control')) }}
                 <br>
                 {{ Form::label('salary', "Salary Range:") }}
                 {{ Form::text('salary', null, array('class' => 'form-control', 'required' => '')) }}

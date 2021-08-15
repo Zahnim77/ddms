@@ -28,9 +28,9 @@
             </h5>
 
             <p>
-                {{ substr($job->job_description, 0, 250) }}
+                {{ substr(strip_tags($job->job_description), 0, 250) }}
                 &nbsp;
-                {{ strlen($job->job_description) > 250 ? "....." : "" }}
+                {{ strlen(strip_tags($job->job_description)) > 250 ? "....." : "" }}
             </p>
 
             <a href="{{ route('view.single', $job->slug) }}" class="btn btn-link">.. Read more</a>

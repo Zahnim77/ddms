@@ -75,9 +75,9 @@
             </h4>
 
             <p>
-              {{ substr($job->job_description, 0, 300) }}
+              {{ substr(strip_tags($job->job_description), 0, 300) }}
               &nbsp;
-              {{ strlen($job->job_description) > 250 ? "....." : "" }}
+              {{ strlen(strip_tags($job->job_description)) > 250 ? "....." : "" }}
             </p>
             <a href="{{ url('view/'.$job->slug) }}" class="btn btn-dark">.. Read more</a>
           </div>

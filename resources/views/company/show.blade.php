@@ -77,6 +77,6 @@
             </div>
         </div>
         <h4>Job Details</h4>
-        <p class="lead">{{ $job->job_description }}</p>
+        <p class="lead">{!! $job->job_description !!}</p>
     </div>
 @endsection

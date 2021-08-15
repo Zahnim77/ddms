@@ -12,7 +12,12 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h2>{{ $job->job_title }}</h2>
+            <h2>
+                {{ $job->job_title }}
+                <small><span class="w3-tag w3-round w3-orange">
+                    {{ $job->company_name }} 
+                </span></small>
+            </h2>
             <hr>
         </div>
         <div class="col-md-6">
@@ -44,7 +49,7 @@
         <div class="col-md-12">
             <br>
             <h4>Job Details</h4>
-            <p class="lead">{{ $job->job_description }}</p>
+            <p class="lead">{!! $job->job_description !!}</p>
             <br>
         </div>
         <div class="col-md-4 offset-md-4">

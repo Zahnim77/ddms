@@ -16,6 +16,19 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 */
+// Clear Cache
+/* 
+Route::get('/clearcache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+});
+*/
+// Publishing Purifier on test
+/*
+Route::get('/purifier', function () {
+    Artisan::call('vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"');
+});
+*/
 /* 1st parameter is for hyperlink reference value:"href" */
 Route::get('/', 'PageController@getIndex');
 Route::get('contact', 'PageController@getContact');
